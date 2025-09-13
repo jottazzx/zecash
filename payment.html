@@ -1,0 +1,372 @@
+
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Pagamento — ZeCash</title>
+  <link rel="stylesheet" href="./zecash-ui.css"/>
+  <style>
+    body{background:var(--bg);margin:0;padding:0}
+    .checkout{max-width:920px;margin:20px auto;padding:24px;border:1px solid var(--stroke);
+      border-radius:16px;background:#fff;box-shadow:var(--shadow);}
+    .checkout h1{font-size:24px;margin:0 0 8px}
+    .checkout .price{font-size:20px;font-weight:900;color:var(--brand-700)}
+    .columns{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:20px}
+    .card-box{border:1px solid var(--stroke);border-radius:12px;padding:16px;background:#fafafa}
+    .card-box h2{margin:0 0 12px;font-size:18px;color:var(--brand-700)}
+    .input{display:grid;gap:6px;margin:10px 0}
+    .input input{padding:12px;border:1px solid var(--stroke);border-radius:12px;font-size:16px}
+    .btn-pay{width:100%;padding:14px;border:none;border-radius:14px;background:var(--brand-600);
+      color:#fff;font-weight:800;font-size:16px;cursor:pointer;box-shadow:var(--shadow);margin-top:20px}
+    .btn-pay:hover{background:var(--brand-700)}
+    .badge{margin-left:6px;background:var(--brand-100);color:var(--brand-800);border:1px solid var(--brand-300);
+      font-size:12px;display:inline-flex;align-items:center;gap:4px;padding:4px 8px;border-radius:999px}
+
+    /* Estilo cartão refinado */
+    .card-sim{
+      background:linear-gradient(135deg, var(--brand-600), var(--brand-700));
+      color:#fff;
+      border-radius:16px;
+      padding:20px;
+      box-shadow:0 6px 14px rgba(0,0,0,0.2);
+      width:100%;
+      max-width:380px;
+      height:220px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+    .chip-flags{display:flex;align-items:center;justify-content:space-between}
+    .chip{width:44px;height:32px;background:gold;border-radius:6px;box-shadow:inset 0 0 4px rgba(0,0,0,0.4)}
+    .flags{display:flex;gap:8px}
+    .flags span{background:#fff;color:#000;padding:4px 8px;border-radius:6px;font-size:12px;font-weight:700;box-shadow:0 2px 6px rgba(0,0,0,0.2)}
+    .card-num{font-size:18px;letter-spacing:2px;margin:10px 0 0}
+    .card-footer{display:flex;justify-content:space-between;font-size:13px;color:#eee}
+    .card-footer div{display:flex;flex-direction:column}
+
+    /* Responsividade */
+    @media(max-width:780px){
+      .columns{grid-template-columns:1fr}
+      .card-sim{margin:0 auto}
+    }
+  
+    /* Inputs do cartão */
+    .card-fields .input input {
+      font-family: monospace;
+      letter-spacing: 2px;
+      border:2px solid var(--brand-200);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .card-fields .input input:focus {
+      border-color: var(--brand-600);
+      box-shadow: 0 0 0 3px var(--brand-100);
+      outline:none;
+    }
+
+  
+    /* Animação cartão */
+    .card-sim.animate {
+      animation: pulseCard 0.6s ease;
+    }
+    @keyframes pulseCard {
+      0% { transform: scale(1); box-shadow:0 6px 14px rgba(0,0,0,0.2); }
+      50% { transform: scale(1.03); box-shadow:0 10px 20px rgba(0,0,0,0.3); }
+      100% { transform: scale(1); box-shadow:0 6px 14px rgba(0,0,0,0.2); }
+    }
+
+  </style>
+</head>
+<body>
+  <div id="user-info" style='padding:10px;font-weight:bold'></div>
+
+  <main class="checkout">
+    <h1>Plano Plus — ZeCash</h1>
+    <p class="price">R$ 19 / mês <span class="badge">🎁 7 dias grátis</span></p>
+    <p>Preencha seus dados de pagamento para começar agora mesmo.</p>
+
+    <form id="checkout-form">
+      <div class="columns">
+        
+        <!-- Dados da Conta -->
+        <div class="card-box">
+          <h2>Informações da Conta</h2>
+          <div class="input">
+            <label for="name">Nome completo</label>
+            <input id="name" type="text" placeholder="Seu nome" required>
+          </div>
+          <div class="input">
+            <label for="cpf">CPF</label>
+            <input id="cpf" type="text" placeholder="000.000.000-00" required>
+          </div>
+          <div class="input">
+            <label for="email">E-mail</label>
+            <input id="email" type="email" placeholder="voce@exemplo.com" required>
+          </div>
+          <div class="input">
+            <label for="password">Senha</label>
+            <input id="password" type="password" placeholder="Crie uma senha" required>
+          </div>
+          <div class="input">
+            <label for="cep">CEP</label>
+            <input id="cep" type="text" placeholder="00000-000" required>
+          </div>
+          <div class="input">
+            <label for="telefone">Telefone</label>
+            <input id="telefone" type="text" placeholder="(11) 99999-9999" required>
+          </div>
+          <div class="input">
+            <label for="endereco">Endereço</label>
+            <input id="endereco" type="text" placeholder="Rua, número, complemento" required>
+          </div>
+        </div>
+
+        
+        <!-- Cartão refinado -->
+        <div class="card-box">
+          <div class="card-sim">
+            <div class="chip-flags">
+              <div class="chip"></div>
+              <div class="flags">
+                <span>VISA</span>
+                <span>MASTERCARD</span>
+              </div>
+            </div>
+            <div class="card-num">0000 0000 0000 0000</div>
+            <div class="card-footer">
+              <div>
+                <span>Validade</span>
+                <strong>MM/AA</strong>
+              </div>
+              <div>
+                <span>CVV</span>
+                <strong>123</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Campos do cartão -->
+          <div class="card-fields">
+            <div class="input">
+              <label for="cardNumber">Número do Cartão</label>
+              <input id="cardNumber" type="text" placeholder="0000 0000 0000 0000" maxlength="19" required>
+            </div>
+            <div class="input">
+              <label for="cardExpiry">Validade (MM/AA)</label>
+              <input id="cardExpiry" type="text" placeholder="MM/AA" maxlength="5" required>
+            </div>
+            <div class="input">
+              <label for="cardCvv">CVV</label>
+              <input id="cardCvv" type="text" placeholder="123" maxlength="3" required>
+            </div>
+          </div>
+        </div>
+
+      <button class="btn-pay" type="submit">Pagar com Cartão</button>
+    </form>
+  </main>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Supabase + Bcrypt (ordem correta) -->
+
+
+
+
+<!-- === Signup integration (não interfere na animação) === -->
+
+
+
+
+<!-- === Signup integration with logs and delay === -->
+
+
+
+
+
+<!-- === Supabase Signup (1x apenas) === -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bcryptjs/2.4.3/bcrypt.js"></script>
+<script>
+  window.bcrypt = (window.dcodeIO && window.dcodeIO.bcrypt) ? window.dcodeIO.bcrypt : window.bcrypt;
+  if (!window.bcrypt) console.error("[signup] bcrypt não carregou");
+</script>
+<script src="https://unpkg.com/@supabase/supabase-js"></script>
+<script>
+(function(){
+  if (!window.supabase) { console.error("[signup] supabase-js não carregou"); return; }
+  const supabase = window.supabase.createClient(
+    "https://crqrfsgnyqxhztgvyrqn.supabase.co",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNycXJmc2dueXF4aHp0Z3Z5cnFuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc1NDY0NjUsImV4cCI6MjA3MzEyMjQ2NX0.hyPiAqXE4YV1hIhqgmixGEgj3dKRtsYgnzNIr3QuO5w"
+  );
+
+  let signupDone = false;
+
+  async function handleSignupOnce(e){
+    if (signupDone) {
+      console.log("[signup] já executado, seguindo fluxo original");
+      return; // não roda de novo
+    }
+    e.preventDefault();
+    const form = e.target;
+    try {
+      const nameEl = document.getElementById("name");
+      const emailEl = document.getElementById("email");
+      const passEl  = document.getElementById("password");
+      if (!nameEl || !emailEl || !passEl){
+        console.warn("[signup] Campos não encontrados, pulando cadastro");
+      } else {
+        const name = nameEl.value;
+        const email = emailEl.value;
+        const password = passEl.value;
+        console.log("[signup] Dados coletados", {name, email});
+
+        if (!window.bcrypt){ console.error("[signup] bcrypt indisponível"); return; }
+        const salt = window.bcrypt.genSaltSync(10);
+        const hash = window.bcrypt.hashSync(password, salt);
+        console.log("[signup] Hash ok");
+
+        const { data, error } = await supabase
+          .from("app_users")
+          .insert([{ name, email, password_hash: hash }])
+          .select()
+          .single();
+
+        if (error){
+          console.error("[signup] Erro Supabase", error);
+          alert("Erro ao salvar no Supabase: " + error.message);
+        } else {
+          console.log("[signup] Usuário salvo", data);
+          localStorage.setItem("user", JSON.stringify({ id: data.id, email: data.email, name: data.name }));
+          showSuccessModal();
+}
+      }
+    } catch (err){
+      console.error("[signup] Erro inesperado", err);
+      alert("Erro inesperado, veja console");
+    }
+
+    signupDone = true;
+    // delay p/ logs aparecerem antes do fluxo original
+  }
+
+  window.addEventListener("load", () => {
+    const form = document.getElementById("checkout-form");
+    if (form){
+      form.addEventListener("submit", handleSignupOnce, true);
+      console.log("[signup] Listener conectado ao checkout-form");
+    }
+  });
+})();
+</script>
+
+
+<!-- === Scripts de UI: Reflexo do Cartão (corrigido) === -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const cardNumEl = document.querySelector(".card-num");
+  const cardExpiryEl = document.querySelector(".card-footer div:first-child strong");
+  const cardCvvEl = document.querySelector(".card-footer div:last-child strong");
+  const cardSim = document.querySelector(".card-sim");
+
+  function animateCard() {
+    if (!cardSim) return;
+    cardSim.classList.add("animate");
+    setTimeout(()=> cardSim.classList.remove("animate"), 600);
+  }
+
+  const numInput = document.getElementById("cardNumber");
+  if (numInput) {
+    numInput.addEventListener("input", e => {
+      cardNumEl.textContent = e.target.value || "0000 0000 0000 0000";
+      animateCard();
+    });
+  }
+
+  const expInput = document.getElementById("cardExpiry");
+  if (expInput) {
+    expInput.addEventListener("input", e => {
+      cardExpiryEl.textContent = e.target.value || "MM/AA";
+      animateCard();
+    });
+  }
+
+  const cvvInput = document.getElementById("cardCvv");
+  if (cvvInput) {
+    cvvInput.addEventListener("input", e => {
+      cardCvvEl.textContent = e.target.value || "123";
+      animateCard();
+    });
+  }
+});
+</script>
+
+
+<!-- Modal de Confirmação -->
+<div id="successModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); align-items:center; justify-content:center; z-index:1000;">
+  <div style="background:#fff; border-radius:16px; padding:24px; text-align:center; max-width:400px; box-shadow:0 4px 20px rgba(0,0,0,0.3)">
+    <img src="pet.png" alt="Mascote" style="width:100px; margin-bottom:16px;">
+    <h2 style="margin:0 0 10px">🎉 Obrigado por assinar o ZeCash!</h2>
+    <p>Seu acesso ao plano Plus foi liberado.</p>
+    <button onclick="window.location.href='ux2-dashboard.html'" 
+      style="margin-top:16px; background:green; color:white; padding:10px 20px; border:none; border-radius:8px; cursor:pointer; font-size:15px; font-weight:bold;">
+      Ir para o Dashboard
+    </button>
+  </div>
+</div>
+<!-- Fim Modal -->
+
+
+<script>
+  function showSuccessModal() {
+    document.getElementById("successModal").style.display = "flex";
+  }
+</script>
+
+<!-- === Scripts de UI: Card Formatting === -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // Número do cartão
+  const cardNumberInput = document.getElementById("cardNumber");
+  if (cardNumberInput) {
+    cardNumberInput.addEventListener("input", e => {
+      let value = e.target.value.replace(/\D/g, ""); // só dígitos
+      value = value.substring(0, 16); // máximo 16 dígitos
+      e.target.value = value.replace(/(\d{4})(?=\d)/g, "$1 ").trim();
+    });
+  }
+
+  // Validade MM/AA
+  const expiryInput = document.getElementById("cardExpiry");
+  if (expiryInput) {
+    expiryInput.addEventListener("input", e => {
+      let value = e.target.value.replace(/\D/g, ""); // só dígitos
+      if (value.length > 4) value = value.substring(0, 4);
+      if (value.length >= 3) {
+        value = value.substring(0, 2) + "/" + value.substring(2);
+      }
+      e.target.value = value;
+    });
+  }
+
+  // CVV (3 dígitos)
+  const cvvInput = document.getElementById("cardCvv");
+  if (cvvInput) {
+    cvvInput.addEventListener("input", e => {
+      let value = e.target.value.replace(/\D/g, ""); // só dígitos
+      e.target.value = value.substring(0, 3);
+    });
+  }
+});
+</script>
+
+</body>
+</html>

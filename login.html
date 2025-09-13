@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ZeCash — Entrar</title>
+  <meta name="description" content="Entre no ZeCash para acessar seus dados e relatórios.">
+  <link rel="stylesheet" href="./zecash-ui.css"/>
+</head>
+<body>
+  
+<!-- SVG sprite -->
+<svg aria-hidden="true" width="0" height="0" style="position:absolute;overflow:hidden">
+  <symbol id="i-logo" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 1 0 8.94 14.56l-1.78-.9A8 8 0 1 1 20 12h-3l4.5-5L26 12h-3a11 11 0 1 1-11-10z"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path fill="currentColor" d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6z"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><path fill="currentColor" d="M3 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2H5v10h12a2 2 0 0 1 2 2H5a2 2 0 0 1-2-2z"/><path fill="currentColor" d="M17 9h4v6h-4a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2zm1 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path fill="currentColor" d="M3 3h2v18H3zM8 13h2v8H8zM13 9h2v12h-2zM18 5h2v16h-2z"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path fill="currentColor" d="M1 21h22L12 2 1 21zm12-3h-2v2h2v-2zm0-8h-2v6h2V10z"/></symbol>
+  <symbol id="i-report" viewBox="0 0 24 24"><path fill="currentColor" d="M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm8 1v5h5"/><path fill="currentColor" d="M8 12h8v2H8zm0 4h5v2H8z"/></symbol>
+  <symbol id="i-calc" viewBox="0 0 24 24"><path fill="currentColor" d="M5 2h14a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm3 4h8v3H8V6zm0 6h3v3H8v-3zm0 5h3v3H8v-3zm5-5h3v3h-3v-3zm0 5h3v3h-3v-3z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.2 5.5 12.7l-1.4 1.4L9 19 20.3 7.7l-1.4-1.4z"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path fill="currentColor" d="m12 2 3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></symbol>
+  <symbol id="i-whatsapp" viewBox="0 0 24 24"><path fill="currentColor" d="M20.52 3.48A11.86 11.86 0 0 0 12.02 0C5.4 0 .03 5.37.03 11.99c0 2.1.55 4.05 1.52 5.76L0 24l6.43-1.69a12 12 0 0 0 5.58 1.42h.01c6.62 0 11.99-5.37 11.99-11.99 0-3.21-1.25-6.23-3.49-8.26zM12.02 22a9.9 9.9 0 0 1-5.06-1.38l-.36-.21-3.82 1 1.02-3.72-.24-.38a9.98 9.98 0 1 1 8.46 4.69zm5.69-7.48c-.31-.16-1.83-.9-2.11-1a.48.48 0 0 0-.48.08c-.14.12-.56.68-.69.82a.45.45 0 0 1-.49.1c-1.33-.53-2.34-1.19-3.26-2.12a9.9 9.9 0 0 1-1.96-2.48.43.43 0 0 1 .13-.55c.13-.12.31-.33.44-.47.14-.17.18-.26.27-.44a.45.45 0 0 0-.02-.45c-.06-.16-.48-1.16-.66-1.59-.17-.42-.35-.36-.49-.36l-.42-.01a.8.8 0 0 0-.58.27c-.2.21-.76.74-.76 1.8 0 1.06.78 2.08.89 2.23.12.16 1.54 2.35 3.73 3.29 2.19.94 2.19.63 2.58.59.39-.04 1.27-.52 1.45-1.03.18-.51.18-.95.12-1.03a.47.47 0 0 0-.24-.21z"/></symbol>
+</svg>
+
+  
+<header>
+  <nav class="container nav" aria-label="Principal">
+    <a class="brand" href="./home.html" aria-label="Início">
+      <svg aria-hidden="true"><use href="#i-logo"/></svg>
+      <span>ZeCash</span>
+    </a>
+    <div class="menu" id="menu">
+      <a href="./home.html">Início</a>
+      <a href="./plus.html">Plano Plus</a>
+    </div>
+    <div class="cta">
+      
+      
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir menu">☰</button>
+    </div>
+  </nav>
+</header>
+
+  <main class="hero">
+    <div class="container hero-inner">
+      <div>
+        <span class="badge"><svg width="16" height="16"><use href="#i-check"/></svg> Acesso seguro</span>
+        <h1>Entrar</h1>
+        <p class="lead">Faça login com e-mail e senha ou conecte-se direto pelo WhatsApp.</p>
+        <div class="actions">
+          
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="card"><img class="mascot" src="./pet.png" alt="Mascote ZeCash acenando" loading="lazy"/>
+          <form class="form" action="#" method="post" onsubmit="loginUser(event)">
+            <div class="input"><label for="email">E-mail</label><input id="email" type="email" placeholder="voce@exemplo.com" required/></div>
+            <div class="input"><label for="password">Senha</label><input id="password" type="password" placeholder="••••••••" required/></div>
+            <div class="actions">
+              <button class="btn btn-primary" type="submit">Entrar</button>
+              <a class="btn" href="./payment.html">Criar conta</a>
+            </div>
+            <p class="sub" style="margin-top:8px"><a href="#">Esqueci minha senha</a></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+<footer>
+  <div class="container" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px">
+    <small>© <span data-year></span> ZeCash — Todos os direitos reservados.</small>
+    <small><a href="#">Política de Privacidade</a> · <a href="#">Termos de Uso</a></small>
+  </div>
+</footer>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bcryptjs/2.4.3/bcrypt.js"></script>
+<script>
+  const bcrypt = dcodeIO.bcrypt; // garante que bcrypt existe
+</script>
+<script src="https://unpkg.com/@supabase/supabase-js"></script>
+<script>
+  const supabase = window.supabase.createClient(
+    "https://crqrfsgnyqxhztgvyrqn.supabase.co",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNycXJmc2dueXF4aHp0Z3Z5cnFuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc1NDY0NjUsImV4cCI6MjA3MzEyMjQ2NX0.hyPiAqXE4YV1hIhqgmixGEgj3dKRtsYgnzNIr3QuO5w"
+  );
+
+  async function loginUser(event) {
+    event.preventDefault();
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    let { data, error } = await supabase
+      .from("app_users")
+      .select("id, email, name, password_hash")
+      .eq("email", email)
+      .single();
+
+    if (error || !data) {
+      console.error("Erro Supabase:", error);
+      showErrorModal();
+      return;
+    }
+
+    const match = await bcrypt.compare(password, data.password_hash);
+    if (!match) {
+
+      return;
+    }
+
+    localStorage.setItem("user", JSON.stringify({
+      id: data.id, email: data.email, name: data.name
+    }));
+
+    window.location.href = "ux2-dashboard.html";
+  }
+</script>
+
+
+<!-- Modal de Erro -->
+<div id="errorModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); align-items:center; justify-content:center; z-index:1000;">
+  <div style="background:#fff; border-radius:16px; padding:24px; text-align:center; max-width:400px; box-shadow:0 4px 20px rgba(0,0,0,0.3)">
+    <img src="pet.png" alt="Mascote" style="width:100px; margin-bottom:16px;">
+    <h2 style="margin:0 0 10px">❌ Login ou senha inválidos</h2>
+    <p>Tente novamente.</p>
+    <button onclick="closeErrorModal()" 
+      style="margin-top:16px; background:red; color:white; padding:10px 20px; border:none; border-radius:8px; cursor:pointer; font-size:15px; font-weight:bold;">
+      Fechar
+    </button>
+  </div>
+</div>
+<!-- Fim Modal Erro -->
+<script>
+  function showErrorModal() {
+    document.getElementById("errorModal").style.display = "flex";
+  }
+  function closeErrorModal() {
+    document.getElementById("errorModal").style.display = "none";
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>ZeCash UX Light — Painel</title>
+  <meta name="description" content="Painel leve, claro e direto com dashboards de gastos e utilidades."/>
+  <link rel="stylesheet" href="./ux2.css"/>
+
+<style>
+.whatsapp-button {
+  background-color: #25D366;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: background 0.3s;
+}
+.whatsapp-button:hover {
+  background-color: #1ebe5d;
+}
+</style>
+
+</head>
+<body>
+<header>
+  <nav class="container nav" aria-label="Principal">
+    <div class="brand">
+      <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#10b981"/></svg>
+      <span>ZeCash UX</span>
+    </div>
+    <div class="menu">
+      <a href="./ux2-dashboard.html" aria-current="page">Painel</a>
+      <a href="#" id="exportCsv">Exportar CSV</a>
+      <!-- Login/Logout removidos -->
+    
+      <a href="https://wa.me/5565992377075" target="_blank" class="whatsapp-button">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" 
+             alt="WhatsApp" style="width:18px;height:18px;vertical-align:middle;margin-right:6px;">
+        Conversar com Ze
+      </a>
+
+    </div>
+  </nav>
+</header>
+
+<main>
+  <div class="container">
+    <div class="toolbar">
+      <div>
+        <h1 id="welcomeTitle" data-fake="Olá, João!">Olá!</h1>
+        <div class="tip" id="welcomeSub" data-fake="Aqui está o seu painel de gastos"></div>
+        <div class="pills" id="pillGoals"></div>
+      </div>
+      <div class="row" style="display:flex;gap:8px;flex-wrap:wrap">
+        <select id="periodSelect" data-fake="Últimos 30 dias" class="btn btn-ghost" aria-label="Período">
+          <option value="30">Últimos 30 dias</option>
+          <option value="90">Últimos 90 dias</option>
+          <option value="180">Últimos 6 meses</option>
+          <option value="365">Últimos 12 meses</option>
+        </select>
+        <button id="addExpense" class="btn">+ Adicionar gasto</button>
+        <button id="setGoal" class="btn">🎯 Definir meta</button>
+      </div>
+    </div>
+
+    <div class="grid kpis">
+      <div class="card kpi reveal"><span class="label">Gasto do mês</span><span class="value" id="kpiMonthSpend" data-fake="R$ 1.200,00">—</span><span class="tip">Meta: <span id="kpiBudget" data-fake="R$ 1.500,00">—</span></span></div>
+      <div class="card kpi reveal"><span class="label">Variação vs mês anterior</span><span class="value" id="kpiMoM" data-fake="+15%">—</span><svg class="spark" id="sparkMoM"></svg></div>
+      <div class="card kpi reveal"><span class="label">Maior categoria</span><span class="value" id="kpiTopCat" data-fake="Alimentação">—</span><span class="tip" id="kpiTopCatTip" data-fake="R$ 600,00">—</span></div>
+      <div class="card kpi reveal"><span class="label">Economia estimada</span><span class="value" id="kpiSave" data-fake="R$ 300,00">—</span><span class="tip">Com cortes sugeridos</span></div>
+    </div>
+
+    <section style="margin-top:12px" class="widgets grid">
+      <div class="card reveal">
+        <div class="section-title">
+          <h2>Gastos por categoria</h2>
+          <div class="legend" id="legendCats"></div>
+        </div>
+        <svg class="chart" id="chartCats" data-fake="fake_category_chart_data" role="img" aria-label="Barras por categoria"></svg>
+      </div>
+      <div class="card reveal">
+        <div class="section-title"><h2>Orçamento do mês</h2></div>
+        <svg class="chart" id="chartDonut" data-fake="fake_donut_chart_data" viewBox="0 0 200 200" aria-label="Donut do orçamento"></svg>
+        <div class="progress" aria-label="Progresso do orçamento"><span id="budgetProgress" data-fake="75%" style="width:0%"></span></div>
+      </div>
+    </section>
+
+    <section class="widgets grid" style="margin-top:12px">
+      <div class="card reveal">
+        <div class="section-title"><h2>Gasto diário</h2></div>
+        <div class="chart-wrap"><svg class="chart" id="chartDaily" role="img" aria-label="Gasto diário: últimos 30 dias"></svg><div class="legend-inline"><span class="key"><span class="swatch"></span>Gasto/dia</span><span class="key"><span class="swatch avg"></span>Média 7d</span><span class="key"><span class="swatch today"></span>Hoje</span></div></div>
+      </div>
+      <div class="card reveal">
+        <div class="section-title"><h2>Assistente financeiro</h2></div>
+        <div class="list" id="coachList"></div>
+      </div>
+    </section>
+
+    <section style="margin-top:12px">
+      <div class="card reveal">
+        <div class="section-title"><h2>Transações recentes</h2></div>
+        <table class="table" id="txTable"></table>
+      </div>
+    </section>
+  </div>
+</main>
+<script src="./ux2.js"></script>
+</body>
+</html>
